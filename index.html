@@ -19,17 +19,17 @@
   <div class="header">
     <div class="header-title">Houndoom's Library</div>
     <div class="header-buttons">
-      <button>Filter Unread</button>
-      <button>Show Favourites</button>
+      <button id="show-favourites"><img src="images/star-outline.svg" alt="Show favourites">Show favourites</button>
+      <button id="show-read"><img src="images/book-open-variant.svg" alt="Show read">Show read</button>
     </div>
   </div>
   <div class="library">
-    <div class="card" id="card-prototype">
+    <div id="card-prototype">
       <div class="top-bar">
         <div class="id-number">99</div>
         <div class="top-buttons">
-          <button id="favourite"><img src="images/star-outline.svg" alt="Toggle favourite" id="test"></button>
-          <button id="read"><img src="images/book-open-variant.svg" alt="Toggle read"></button>
+          <button class="favourite"><img src="images/star-outline.svg" alt="Toggle favourite" id="test"></button>
+          <button class="read"><img src="images/book-open-blank-variant.svg" alt="Toggle read"></button>
         </div>
       </div>
       <div class="book-details">
@@ -52,7 +52,7 @@
           <div class="book-data">353</div>
         </div>
       </div>
-      <button id="delete-button"><img src="images/trash-can-outline.svg" alt="Delete card"></button>
+      <button class="delete-button"><img src="images/trash-can-outline.svg" alt="Delete card"></button>
     </div>
   </div>
 
@@ -64,7 +64,7 @@
     <fieldset>
       <label for="title-input">Title<abbr title="Required">*</abbr>:</label>
       <div class="input-and-error">
-        <input type="text" id="title-input">
+        <input type="text" id="title-input" required>
         <div class="error-message"></div>
       </div>
       <label for="author-input">Author:</label>
@@ -74,7 +74,7 @@
       </div>
       <label for="year-input">Year:</label>
       <div class="input-and-error">
-        <input type="text" id="year-input">
+        <input type="text" id="year-input" inputmode="numeric" pattern="\d{0,4}">
         <div class="error-message"></div>
       </div>
       <label for="publisher-input">Publisher:</label>
@@ -84,7 +84,7 @@
       </div>
       <label for="pages-input">Pages:</label>
       <div class="input-and-error">
-        <input type="text" id="pages-input">
+        <input type="text" id="pages-input" inputmode="numeric" pattern="\d{0,6}">
         <div class="error-message"></div>
       </div>
     </fieldset>

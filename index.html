@@ -19,8 +19,8 @@
   <div class="header">
     <div class="header-title">Houndoom's Library</div>
     <div class="header-buttons">
-      <button id="show-favourites"><img src="images/star-outline.svg" alt="Show favourites">Show favourites</button>
-      <button id="show-read"><img src="images/book-open-variant.svg" alt="Show read">Show read</button>
+      <button id="show-favourites" title="Show only favourites"><img src="images/star-outline.svg" alt="Show favourites">Show favourites</button>
+      <button id="show-unread" title="Show only books that are read"><img src="images/book-open-blank-variant.svg" alt="Show unread">Show unread</button>
     </div>
   </div>
   <div class="library">
@@ -28,8 +28,8 @@
       <div class="top-bar">
         <div class="id-number">99</div>
         <div class="top-buttons">
-          <button class="favourite"><img src="images/star-outline.svg" alt="Toggle favourite" id="test"></button>
-          <button class="read"><img src="images/book-open-blank-variant.svg" alt="Toggle read"></button>
+          <button class="favourite" title="Toggle favourite"><img src="images/star-outline.svg" alt="Toggle favourite" id="test"></button>
+          <button class="read" title="Toggle read"><img src="images/book-open-blank-variant.svg" alt="Toggle read"></button>
         </div>
       </div>
       <div class="book-details">
@@ -52,11 +52,11 @@
           <div class="book-data">353</div>
         </div>
       </div>
-      <button class="delete-button"><img src="images/trash-can-outline.svg" alt="Delete card"></button>
+      <button class="delete-button" title="Delete book"><img src="images/trash-can-outline.svg" alt="Delete card"></button>
     </div>
   </div>
 
-  <button type="button" id="form-open"><img src="images/plus.svg" alt="Add book"></button>
+  <button type="button" id="form-open" title="Add Book"><img src="images/plus.svg" alt="Add book"></button>
   <form id="form-add-new-book">
     <div class="form-title">Add New Book</div>
     <button type="button" id="form-exit"><img src="images/close.svg" alt="Close"></button>

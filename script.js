@@ -31,7 +31,6 @@ function displayBooksInLibrary() {
 
     newBook.removeAttribute("id");
     newBook.classList.add("card");
-    newBook.setAttribute("data-book-number", i);
     newBook.querySelector(".id-number").textContent = i;
     newBook.querySelector(".title").textContent = book.title;
     newBook.querySelector(".author>.book-data").textContent = book.author;
@@ -62,6 +61,7 @@ function displayBooksInLibrary() {
   const allTitles = document.querySelectorAll(".card .book-data");
   allTitles.forEach(e => textFit(e));
   
+  // Untoggle "show" buttons when redisplaying cards
   const toggleButtons = document.querySelectorAll('.header-buttons button');
   toggleButtons.forEach(e => {
     if (e.classList.contains("pressed")) {
@@ -120,6 +120,8 @@ function addNewBook() {
   const publisherInput = document.getElementById('publisher-input');
   const pagesInput = document.getElementById('pages-input');
 
+  // Validity checks
+
   if (!titleInput.validity.valid) {
     setError('title-input','Please enter a title');
     titleInput.addEventListener('input',() => clearError('title-input'));
@@ -134,6 +136,8 @@ function addNewBook() {
     setError('pages-input','Please enter a number between 0 and 999999');
     pagesInput.addEventListener('input',() => checkError('pages-input'));
   }
+
+  // If all validity checks passed, add book
 
   if (titleInput.validity.valid && yearInput.validity.valid && pagesInput.validity.valid) {
     addBookToLibrary(titleInput.value,authorInput.value || '-',yearInput.value || '-',publisherInput.value || '-',pagesInput.value || '-');
@@ -157,11 +161,12 @@ function clearError(inputID) {
   return;
 }
 
+// Switch to greedy checking once error is triggered
+
 function checkError(inputID) {
   const selectedInput = document.getElementById(inputID);
   if (selectedInput.validity.valid) {
-    selectedInput.classList.remove('field-error');
-    selectedInput.nextElementSibling.textContent = "";
+    clearError(inputID);
     selectedInput.removeEventListener('input',checkError('year-input'));
   }
   return;
@@ -219,32 +224,22 @@ function toggleRead() {
 /* Buttons to show only selected cards */
 
 const showFavourites = document.getElementById("show-favourites");
-const showRead = document.getElementById("show-read");
+const showUnread = document.getElementById("show-unread");
 
-showFavourites.addEventListener("click",() => toggleShow(showFavourites,'favourited'));
-showRead.addEventListener("click", () => toggleShow(showRead,'read'));
+showFavourites.addEventListener("click",() => toggleShow(showFavourites,'.card:not(.favourited)','hide-favourite'));
+showUnread.addEventListener("click", () => toggleShow(showUnread,'.card.read','hide-unread'));
 
-function toggleShow(node,className) {
+function toggleShow(node,classSelector,hideClass) {
   const buttonImage = node.querySelector('img');
-  const nonShown = document.querySelectorAll(`.card:not(.${className})`);
+  const nonShown = document.querySelectorAll(classSelector);
   if (node.classList.contains("pressed")) {
     node.classList.remove("pressed");
     buttonImage.src = buttonImage.src.replace("-white","");
-    nonShown.forEach(e => {
-      e.classList.remove("hide");
-      const cardNumber = parseInt(e.querySelector(".id-number").textContent) - 1;
-    })
+    nonShown.forEach(e => e.classList.remove(hideClass))
   } else {
     node.classList.add("pressed");
     buttonImage.src = buttonImage.src.replace(".svg","-white.svg");
-    nonShown.forEach(e => {
-      e.classList.add("hide");
-      const cardNumber = parseInt(e.querySelector(".id-number").textContent) - 1;
-    })
+    nonShown.forEach(e => e.classList.add(hideClass))
   }
   return;
-}
-
-function toggleShowRead() {
-
 }

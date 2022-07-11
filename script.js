@@ -2,14 +2,16 @@ let myLibrary = [];
 
 /* Book object */
 
-function Book(title,author,year,publisher,pages) {
-  this.title = title;
-  this.author = author;
-  this.year = year;
-  this.publisher = publisher;
-  this.pages = pages;
-  this.read = false;
-  this.favourited = false;
+class Book {
+  constructor(title,author,year,publisher,pages) {
+    this.title = title;
+    this.author = author;
+    this.year = year;
+    this.publisher = publisher;
+    this.pages = pages;
+    this.read = false;
+    this.favourited = false;
+  }
 }
 
 /* Function to add book */
